@@ -10623,13 +10623,17 @@ var _evancz$elm_graphics$Collage$ngon = F2(
 				f,
 				A2(_elm_lang$core$List$range, 0, n - 1)));
 	});
+var _sch3lp$moobase_cmdr$Model$Model = function (a) {
+	return {hubs: a};
+};
 var _sch3lp$moobase_cmdr$Model$Hub = F3(
 	function (a, b, c) {
 		return {color: a, pos: b, size: c};
 	});
 var _sch3lp$moobase_cmdr$Update$update = F2(
-	function (msg, hub) {
-		return {ctor: '_Tuple2', _0: hub, _1: _elm_lang$core$Platform_Cmd$none};
+	function (msg, hubs) {
+		var _p0 = msg;
+		return {ctor: '_Tuple2', _0: hubs, _1: _elm_lang$core$Platform_Cmd$none};
 	});
 var _sch3lp$moobase_cmdr$Update$LaunchHub = {ctor: 'LaunchHub'};
 var _sch3lp$moobase_cmdr$View$newHub = {
@@ -10641,7 +10645,7 @@ var _sch3lp$moobase_cmdr$View$toForm = function (hub) {
 	var shape = _evancz$elm_graphics$Collage$circle(hub.size);
 	return A2(_evancz$elm_graphics$Collage$filled, hub.color, shape);
 };
-var _sch3lp$moobase_cmdr$View$view = function (hub) {
+var _sch3lp$moobase_cmdr$View$view = function (model) {
 	return A2(
 		_elm_lang$html$Html$div,
 		{ctor: '[]'},
@@ -10666,21 +10670,27 @@ var _sch3lp$moobase_cmdr$View$view = function (hub) {
 						_evancz$elm_graphics$Collage$collage,
 						400,
 						400,
-						{
-							ctor: '::',
-							_0: _sch3lp$moobase_cmdr$View$toForm(hub),
-							_1: {ctor: '[]'}
-						})),
+						A2(_elm_lang$core$List$map, _sch3lp$moobase_cmdr$View$toForm, model.hubs))),
 				_1: {ctor: '[]'}
 			}
 		});
 };
-var _sch3lp$moobase_cmdr$Subscription$subscriptions = function (hub) {
+var _sch3lp$moobase_cmdr$Subscription$subscriptions = function (model) {
 	return _elm_lang$core$Platform_Sub$none;
 };
 var _sch3lp$moobase_cmdr$Main$main = _elm_lang$html$Html$program(
 	{
-		init: {ctor: '_Tuple2', _0: _sch3lp$moobase_cmdr$View$newHub, _1: _elm_lang$core$Platform_Cmd$none},
+		init: {
+			ctor: '_Tuple2',
+			_0: {
+				hubs: {
+					ctor: '::',
+					_0: _sch3lp$moobase_cmdr$View$newHub,
+					_1: {ctor: '[]'}
+				}
+			},
+			_1: _elm_lang$core$Platform_Cmd$none
+		},
 		update: _sch3lp$moobase_cmdr$Update$update,
 		view: _sch3lp$moobase_cmdr$View$view,
 		subscriptions: _sch3lp$moobase_cmdr$Subscription$subscriptions
